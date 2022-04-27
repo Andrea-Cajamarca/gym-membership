@@ -1,0 +1,12 @@
+image:
+  file: .gitpod.dockerfile
+
+tasks:
+  - init: |
+      npm install
+      gp sync-done installation
+      command: npm run server 3000
+  - init: gp sync-await installation
+    command: npm run client
+  - command: gp await-port 3000 && gp preview $(gp url 3000)
+    
