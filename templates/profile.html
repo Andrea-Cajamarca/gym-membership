@@ -3,4 +3,66 @@
 {% block content %}
 <title>The Fitness Factory | Profile</title>
 
+{% for message in get_flashed_messages() %}
+	
+	<div class="alert alert-warning alert-dismissible fade show" role="alert">
+	  {{ message }}
+	  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+	</div>
+	
+{% endfor %}
+
+	<h2>User Information</h2>
+	<br/>
+
+	<div class="card">
+  <div class="card-header">
+    {{ current_user.name }}
+  </div>
+  <div class="card-body">
+   
+    <p class="card-text">
+
+<div class="container">
+	<div class="row">
+		<div class="col-8">
+
+	<strong>Profile Pic:</strong>
+	{{ current_user.profile_pic }}<br/>
+
+    <strong>Name:</strong>
+	{{ current_user.name }}<br/>
+
+	<strong>Email:</strong>
+	{{ current_user.email }}<br/>
+
+	<strong>Membership Type:</strong>
+	{{ current_user.membership_type }}<br/>
+
+	<strong>Member Since:</strong>
+	{{ current_user.member_since }}<br/>
+
+    </p>
+    
+    <br/><br/>
+    
+	</div>
+	<div class="col-4">
+		{% if current_user.profile_pic %}
+
+		<img src="{{ url_for('static', filename='images/' + current_user.profile_pic)}}" width="200" align="right">
+		
+		{% else %}
+
+		<img src="{{ url_for('static', filename='images/default_profile_pic.png')}}" width="200" align="right">
+
+		{% endif %}
+	
+	</div>
+	</div>
+	</div>
+
+  </div>
+</div>
+
 {% endblock %}
